@@ -262,7 +262,13 @@ void create_calculator_buttons(HWND parent_window) {
     int button_count = sizeof(buttons) / sizeof(buttons[0]);
     
     for (i = 0; i < button_count; i++) {
-        create_button(parent_window, buttons[i].label, buttons[i].x, buttons[i].y, buttons[i].id);
+        create_button(
+            parent_window, 
+            buttons[i].label, 
+            buttons[i].x, 
+            buttons[i].y, 
+            buttons[i].id
+        );
     }
 }
 
