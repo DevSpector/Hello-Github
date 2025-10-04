@@ -79,8 +79,7 @@ void handle_clear_button(void);
 /* ===== Implementation ===== */
 
 /* Application entry point */
-int WINAPI WinMain(HINSTANCE instance, HINSTANCE previous_instance, 
-                   LPSTR command_line, int show_command) {
+int WINAPI WinMain(HINSTANCE instance, HINSTANCE previous_instance, LPSTR command_line, int show_command) {
     /* Avoid unused parameter warnings */
     (void)previous_instance;
     (void)command_line;
@@ -117,8 +116,7 @@ BOOL initialize_application(HINSTANCE instance, int show_command) {
     window_class.hIconSm       = LoadIcon(NULL, IDI_APPLICATION);
 
     if (!RegisterClassEx(&window_class)) {
-        MessageBox(NULL, "Window registration failed", "Error", 
-                  MB_ICONERROR | MB_OK);
+        MessageBox(NULL, "Window registration failed", "Error", MB_ICONERROR | MB_OK);
         return FALSE;
     }
 
@@ -133,8 +131,7 @@ BOOL initialize_application(HINSTANCE instance, int show_command) {
     );
 
     if (g_ui.window == NULL) {
-        MessageBox(NULL, "Window creation failed", "Error", 
-                  MB_ICONERROR | MB_OK);
+        MessageBox(NULL, "Window creation failed", "Error", MB_ICONERROR | MB_OK);
         return FALSE;
     }
 
@@ -145,13 +142,11 @@ BOOL initialize_application(HINSTANCE instance, int show_command) {
 }
 
 /* Main window procedure - handles all window messages */
-LRESULT CALLBACK main_window_procedure(HWND window, UINT message, 
-                                      WPARAM w_param, LPARAM l_param) {
+LRESULT CALLBACK main_window_procedure(HWND window, UINT message, WPARAM w_param, LPARAM l_param) {
     switch (message) {
         case WM_CREATE:
             if (!create_calculator_ui(window)) {
-                MessageBox(window, "Failed to create UI controls", "Error", 
-                          MB_ICONERROR | MB_OK);
+                MessageBox(window, "Failed to create UI controls", "Error", MB_ICONERROR | MB_OK);
                 return -1;
             }
             calculator_reset();
@@ -267,8 +262,7 @@ void create_calculator_buttons(HWND parent_window) {
     int button_count = sizeof(buttons) / sizeof(buttons[0]);
     
     for (i = 0; i < button_count; i++) {
-        create_button(parent_window, buttons[i].label, buttons[i].x, 
-                     buttons[i].y, buttons[i].id);
+        create_button(parent_window, buttons[i].label, buttons[i].x, buttons[i].y, buttons[i].id);
     }
 }
 
