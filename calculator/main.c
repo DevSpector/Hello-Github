@@ -78,9 +78,7 @@ void handle_clear_button(void);
 
 /* ===== Implementation ===== */
 
-/**
- * Application entry point
- */
+/* Application entry point */
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE previous_instance, 
                    LPSTR command_line, int show_command) {
     /* Avoid unused parameter warnings */
@@ -101,9 +99,7 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previous_instance,
     return (int)message.wParam;
 }
 
-/**
- * Initializes the application window and resources
- */
+/* Initializes the application window and resources */
 BOOL initialize_application(HINSTANCE instance, int show_command) {
     const char* window_class_name = "CalculatorApp";
     WNDCLASSEX window_class;
@@ -148,9 +144,7 @@ BOOL initialize_application(HINSTANCE instance, int show_command) {
     return TRUE;
 }
 
-/**
- * Main window procedure - handles all window messages
- */
+/* Main window procedure - handles all window messages */
 LRESULT CALLBACK main_window_procedure(HWND window, UINT message, 
                                       WPARAM w_param, LPARAM l_param) {
     switch (message) {
@@ -203,9 +197,7 @@ LRESULT CALLBACK main_window_procedure(HWND window, UINT message,
     return 0;
 }
 
-/**
- * Creates all calculator UI components
- */
+/* Creates all calculator UI components */
 BOOL create_calculator_ui(HWND parent_window) {
     g_ui.window = parent_window;
     
@@ -215,9 +207,7 @@ BOOL create_calculator_ui(HWND parent_window) {
     return (g_ui.display != NULL);
 }
 
-/**
- * Creates the calculator display field
- */
+/* Creates the calculator display field */
 void create_display_field(HWND parent_window) {
     g_ui.display = CreateWindowEx(
         WS_EX_CLIENTEDGE,
@@ -245,9 +235,7 @@ void create_display_field(HWND parent_window) {
     }
 }
 
-/**
- * Creates all calculator buttons in a grid layout
- */
+/* Creates all calculator buttons in a grid layout */
 void create_calculator_buttons(HWND parent_window) {
     /* Button configuration array */
     struct ButtonConfig {
@@ -284,9 +272,7 @@ void create_calculator_buttons(HWND parent_window) {
     }
 }
 
-/**
- * Creates an individual button
- */
+/* Creates an individual button */
 void create_button(HWND parent_window, const char* label, int x, int y, int id) {
     CreateWindow(
         "BUTTON",
@@ -302,9 +288,7 @@ void create_button(HWND parent_window, const char* label, int x, int y, int id) 
 
 /* ===== Calculator Engine ===== */
 
-/**
- * Resets the calculator to its initial state
- */
+/* Resets the calculator to its initial state */
 void calculator_reset(void) {
     g_calc.first_operand = 0.0;
     g_calc.second_operand = 0.0;
@@ -314,9 +298,7 @@ void calculator_reset(void) {
     calculator_update_display("0");
 }
 
-/**
- * Appends a digit to the current display value
- */
+/* Appends a digit to the current display value */
 void calculator_append_digit(int digit) {
     if (g_calc.error_state) {
         return;
@@ -340,9 +322,7 @@ void calculator_append_digit(int digit) {
     }
 }
 
-/**
- * Sets a pending operation for calculation
- */
+/* Sets a pending operation for calculation */
 void calculator_set_operation(char operation) {
     if (g_calc.error_state) {
         return;
@@ -356,9 +336,7 @@ void calculator_set_operation(char operation) {
     g_calc.should_start_new_number = TRUE;
 }
 
-/**
- * Computes and displays the result of the pending operation
- */
+/* Computes and displays the result of the pending operation */
 void calculator_compute_result(void) {
     if (g_calc.error_state || g_calc.pending_operation == '\0') {
         return;
@@ -413,18 +391,14 @@ void calculator_compute_result(void) {
     }
 }
 
-/**
- * Updates the calculator display with new text
- */
+/* Updates the calculator display with new text */
 void calculator_update_display(const char* text) {
     if (g_ui.display) {
         SetWindowText(g_ui.display, text);
     }
 }
 
-/**
- * Retrieves the current display text
- */
+/* Retrieves the current display text */
 void calculator_get_display_text(char* buffer, size_t buffer_size) {
     if (g_ui.display && buffer) {
         GetWindowText(g_ui.display, buffer, (int)buffer_size);
