@@ -31,4 +31,4 @@ gcc main.c -o calculator
 
 ## License
 
-This project is licensed under the **MIT License**.
+This project is licensed under the **MIT License**
